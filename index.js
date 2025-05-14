@@ -16,6 +16,8 @@ app.post("/", async (req, res) => {
     });
 
     const data = await response.json();
+
+    // Allow frontend to access this response
     res.set("Access-Control-Allow-Origin", "*");
     res.set("Access-Control-Allow-Headers", "*");
     res.json(data);
