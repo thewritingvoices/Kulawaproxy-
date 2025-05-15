@@ -1,16 +1,17 @@
 const express = require("express");
 const fetch = require("node-fetch");
+const { OPENAI_API_KEY } = require("./config"); // changed from env to config file
+
 const app = express();
 app.use(express.json());
 
 app.post("/", async (req, res) => {
-  const key = process.env.OPENAI_API_KEY;
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${key}`
+        "Authorization": `Bearer ${OPENAI_API_KEY}`
       },
       body: JSON.stringify(req.body)
     });
